@@ -1,3 +1,4 @@
+"use client"
 import Avatar from "../components/Avatar";
 import Link from "next/link";
 import Woody from "../components/Woody";
