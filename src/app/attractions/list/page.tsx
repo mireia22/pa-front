@@ -276,7 +276,7 @@ export default function ResumeList() {
                                             >
                                                 -
                                             </button>
-                                            <span className="mx-2">{attraction.times}</span>
+                                            <span className="mx-2">{(attraction?.times ?? 1) >= 1 ? attraction.times : 1}</span>
                                             <button 
                                                 onClick={() => handleTimesChange(attraction.id, true)} 
                                                 className="p-1 border border-gray-300 rounded-lg"
