@@ -9,14 +9,18 @@ const avatarList = [
   { name: "Eloi", src: "/eloi.png" },
   { name: "Dumbo", src: "/dumbo.png" },
   { name: "Tarzan", src: "/tarzan.png" },
-  { name: "Cookie Monster", src: "/cookiemonster.png" },
-  { name: "Sergi", src: "/ser.png" },
+  { name: "Penguin", src: "/penguin.png" },
   { name: "Winnie", src: "/winnie.png" },
   { name: "Shrek", src: "/shrek.png" },
-  { name: "Jack", src: "/toystory.png" },
+  { name: "Sergi", src: "/ser.png" },
   { name: "Mireia", src: "/mire.png" },
+  { name: "Toy", src: "/toystory.png" },
+  { name: "Pantera", src: "/pantera.png" },
   { name: "Boo", src: "/boo.png" },
   { name: "Nemo", src: "/nemo.png" },
+  { name: "Nemo", src: "/ratatouille.png" },
+  { name: "Jack", src: "/jack.png" },
+  { name: "Baby", src: "/baby.png" },
 ];
 
 export default function ProfilePage() {
@@ -77,9 +81,6 @@ export default function ProfilePage() {
 
         </div>
       <div className='flex items-center justify-center gap-2'>
-      <Link href={"/attractions"} className="px-2 py-1 bg-gradient-to-br  text-white from-blue-800 to-blue-400 rounded-lg"> Select Attractions</Link>
-
-      <Link href={"/attractions/list"} className="px-2 py-1 bg-gradient-to-br  text-white from-yellow-900 to-yellow-500 rounded-lg"> Your Lists</Link>
     
     <Link href={"/profile"}>        <Avatar size="small" imageSrc={user?.user.image || '/black.png'} />
     </Link>
@@ -96,11 +97,12 @@ export default function ProfilePage() {
             <Avatar imageSrc={user?.user.image || '/black.png'} />
             <p className="text-red-900 text-4xl font-extrabold">{user.user.username}</p>
             </div>
-        
+           
+
             <p>
               Tu qui ets?
             </p>
-            <ul className="grid grid-cols-3 gap-1">
+            <ul className="grid grid-cols-4 gap-1">
               {avatarList.map((avatar) => (
                 <li
                   key={avatar.name}
@@ -111,9 +113,15 @@ export default function ProfilePage() {
                 </li>
               ))}
             </ul>
-            <button onClick={logout} className="px-2 py-1 mt-4 bg-gradient-to-br  text-white from-red-900 to-red-500 rounded-lg">
+            <div className="flex gap-3 items-center justify-center mt-4">
+            <Link href={"/attractions"} className="px-2 py-1 bg-gradient-to-br  text-white from-blue-900 to-blue-600 rounded-lg shadow-2xl"> Select Attractions</Link>
+
+<Link href={"/attractions/list"} className="px-2 py-1 bg-gradient-to-br  text-white from-yellow-900 to-yellow-600 rounded-lg"> Your Lists</Link>
+<button onClick={logout} className="px-2 py-1  bg-gradient-to-br  text-white from-red-900 to-red-500 rounded-lg">
           Logout
         </button>
+            </div>
+          
           </div>
         ) : (
           <p>Loading profile...</p>

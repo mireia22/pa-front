@@ -13,8 +13,9 @@ export default function Dashboard() {
 
   return (
     <>
-       <header className="h-14 p-2 flex items-center justify-end gap-4 bg-[#323393] text-white">
+       <header className="h-14 p-2 flex items-center justify-between gap-4 bg-[#323393] text-white">
        
+       <Link href={"/countdown"} className="p-1  bg-gradient-to-br  text-white from-red-800 to-red-500 rounded-lg ">Countdown</Link>
 
     
     <Link href={"/profile"}>        <Avatar size="small" imageSrc={user?.user.image || '/black.png'} />

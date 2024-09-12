@@ -1,7 +1,7 @@
 "use client"
+import AttractionImage from "@/app/components/AttractionImage";
 import Avatar from "@/app/components/Avatar";
 import { Attraction, useAuth } from "@/app/context/UserContext";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -9,6 +9,7 @@ export default function ResumeList() {
     const [attractions, setAttractions] = useState<Attraction[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState<'wantToGo' | 'gone'>('wantToGo');
+    
     const { user, setUser} = useAuth();
 
     console.log("user in list", user)
@@ -81,8 +82,8 @@ export default function ResumeList() {
         if (!user?.token) return;
     
         const newTimes = increment
-            ? (user.user.attractions_gone.find(a => a.id === id)?.times || 0) + 1
-            : (user.user.attractions_gone.find(a => a.id === id)?.times || 0) - 1;
+            ? (user.user.attractions_gone.find(a => a.id === id)?.times || 1) + 1
+            : (user.user.attractions_gone.find(a => a.id === id)?.times || 1) - 1;
     
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/user/${user.user.username}/update_times/${id}`, {
             method: 'PATCH',
@@ -263,12 +264,7 @@ export default function ResumeList() {
                                     <tr key={attraction.id} className="bg-white divide-y divide-gray-200  ">
                                         <td className="p-2 py-4 whitespace-nowrap text-start ">
                                         {attraction.name}
-                                        <Image
-src={`${process.env.NEXT_PUBLIC_API_URL}/static/${attraction.image}`}                    width={120}
-                    height={120}
-                    alt={attraction.name}
-                    className={`rounded-lg place-self-center`}
-                  />
+                                       <AttractionImage attraction={attraction}/>
                                             </td>
                                         
 
