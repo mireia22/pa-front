@@ -264,7 +264,7 @@ export default function ResumeList() {
                                     <tr key={attraction.id} className="bg-white divide-y divide-gray-200  ">
                                         <td className="p-2 py-4 whitespace-nowrap text-start ">
                                         {attraction.name}
-                                       <AttractionImage attraction={attraction}/>
+                                       <AttractionImage w={150} h={100} attraction={attraction}/>
                                             </td>
                                         
 

@@ -1,10 +1,10 @@
 "use client";
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Attraction, useAuth } from '../context/UserContext';
 import Link from 'next/link';
 import Avatar from '../components/Avatar';
+import AttractionImage from '../components/AttractionImage';
 
 export default function Attractions() {
   const [areas, setAreas] = useState<string[]>([]);
@@ -147,21 +147,9 @@ export default function Attractions() {
                   <h2 className="text-2xl font-bold text-red-800">{attraction.name}</h2>
                   <h3 className="text-xl font-semibold text-green-600">{attraction.area}</h3>
                 </div>
-                {attraction.image ? (
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${attraction.image}`}
-                    width={280}
-                    height={280}
-                    alt={attraction.name}
-                    className={`rounded-lg place-self-center ${
-                      user.user.attractions_want.find((userAttraction) => userAttraction.id === attraction.id)
-                        ? ''
-                        : 'grayscale'
-                    }`}
-                  />
-                ) : (
-                  <p>No valid image available</p>
-                )}
+  <AttractionImage w={280} h={150} attraction={attraction} />
+                
+                 
                 <div className="flex gap-4">
                 <button
   className={`text-white px-4 py-2 rounded-lg font-semibold w-full ${
