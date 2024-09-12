@@ -82,8 +82,8 @@ export default function ResumeList() {
         if (!user?.token) return;
     
         const newTimes = increment
-            ? (user.user.attractions_gone.find(a => a.id === id)?.times || 1) + 1
-            : (user.user.attractions_gone.find(a => a.id === id)?.times || 1) - 1;
+            ? (user.user.attractions_gone.find(a => a.id === id)?.times || 0) + 1
+            : (user.user.attractions_gone.find(a => a.id === id)?.times || 0) - 1;
     
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/user/${user.user.username}/update_times/${id}`, {
             method: 'PATCH',
@@ -272,7 +272,7 @@ export default function ResumeList() {
                                             <button 
                                                 onClick={() => handleTimesChange(attraction.id, false)} 
                                                 className="p-1 border border-gray-300 rounded-lg"
-                                                disabled={(attraction.times || 0) <= 0}
+                                                disabled={(attraction.times || 1) <= 0}
                                             >
                                                 -
                                             </button>
