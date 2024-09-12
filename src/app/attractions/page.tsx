@@ -118,7 +118,7 @@ export default function Attractions() {
           <div className="flex px-8 py-4 flex-col gap-4 justify-center ">
             <div className='flex  justify-between  items-start text-lg font-semibold'>
               <p>Total: {attractions.length}</p>
-              <p>Want to go: {user?.user?.attractions_want?.length || 0} / {attractions.length}</p>
+              <Link href={"/attractions/list"} className='underline'>Want to go: {user?.user?.attractions_want?.length || 0} / {attractions.length}</Link>
             </div>
             <div className='flex flex-col gap-2'>
             

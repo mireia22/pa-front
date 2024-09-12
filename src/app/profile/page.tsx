@@ -3,6 +3,7 @@ import { useState } from "react";
 import Avatar from "../components/Avatar";
 import Link from "next/link";
 import { useAuth } from "../context/UserContext";
+import HeaderCountdown from "../components/HeaderCountdown";
 
 const avatarList = [
   { name: "woody", src: "/woodyavatar.png" },
@@ -75,11 +76,9 @@ export default function ProfilePage() {
   return (
     <>
       <header className="h-14 p-2 flex items-center justify-between gap-2 bg-[#323393] text-white">
-        <div>
         
         <Link href={"/dashboard"} className="p-2 bg-gradient-to-br  text-white from-green-900 to-green-500 rounded-lg"> Home</Link>
-
-        </div>
+<HeaderCountdown />
       <div className='flex items-center justify-center gap-2'>
     
     <Link href={"/profile"}>        <Avatar size="small" imageSrc={user?.user.image || '/black.png'} />
@@ -107,7 +106,7 @@ export default function ProfilePage() {
                 <li
                   key={avatar.name}
                   onClick={() => handleAvatarClick(avatar.src)}
-                  className={`cursor-pointer ${selectedAvatar === avatar.src ? " scale-125 transform rotate-180 " : ""}`}
+                  className={`cursor-pointer ${selectedAvatar === avatar.src ? " scale-125 transform  " : ""}`}
                 >
                   <Avatar size="medium" imageSrc={avatar.src} />
                 </li>

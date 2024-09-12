@@ -164,6 +164,43 @@ export default function ResumeList() {
     };
     
       
+    const handleDelete = (attraction: Attraction) => {
+        if (!user?.token) return;
+    
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/user/${user.user.username}/delete_want/${attraction.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`,
+            },
+        })
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error('Failed to delete attraction');
+            }
+            return res.json();
+        })
+        .then((data) => {
+            // Update the state with the new list of attractions
+            setAttractions((prevAttractions) =>
+                prevAttractions.filter((a) => a.id !== attraction.id)
+            );
+    
+            setUser((prevUser) => {
+                if (!prevUser) return prevUser;
+                
+                // Update the user state with the new list of 'attractions_want'
+                return {
+                    ...prevUser,
+                    user: {
+                        ...prevUser.user,
+                        attractions_want: data.attractions_want,
+                    },
+                };
+            });
+        })
+        .catch((err) => setError(err.message));
+    };
     
     return (
         <div className=' flex flex-col gap-4'>
@@ -210,6 +247,7 @@ export default function ResumeList() {
                     <th className="p-2 bg-gray-50 text-start">Area</th>
                     <th className="p-2 bg-gray-50 text-start">Name</th>
                     <th className="p-2 bg-gray-50">Status</th>
+                    <th className="p-2 bg-gray-50">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -228,7 +266,8 @@ export default function ResumeList() {
                                     <span className="text-red-600 text-center">✗</span>
                                 )}
                             </td>
-                        </tr>
+                            <td className="text-center cursor-pointer" onClick={() => handleDelete(attraction)}>🗑️</td>
+                            </tr>
                     ))
                 ) : (
                     <tr className="bg-white divide-y divide-gray-200">
