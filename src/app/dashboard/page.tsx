@@ -3,7 +3,6 @@ import Avatar from "../components/Avatar";
 import Link from "next/link";
 import Woody from "../components/Woody";
 import { useAuth } from "../context/UserContext";
-import Countdown from "../components/Countdown";
 import HeaderCountdown from "../components/HeaderCountdown";
 
 
