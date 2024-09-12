@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import useAuth from "../hooks/useAuth";
 import Avatar from "../components/Avatar";
 import Link from "next/link";
+import { useAuth } from "../context/UserContext";
 
 const avatarList = [
   { name: "woody", src: "/woodyavatar.png" },

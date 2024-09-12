@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
 
 interface User {
@@ -44,6 +44,15 @@ const initialState: UserContextProps = {
 };
 
 export const UserDataContext = createContext<UserContextProps>(initialState);
+
+export const useAuth = () => {
+  const context = useContext(UserDataContext);
+  console.log('useAuth context:', context); 
+  if (!context) {
+    throw new Error('useAuth must be used within an EventsProvider');
+  }
+  return context;
+};
 
 export const UserDataProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

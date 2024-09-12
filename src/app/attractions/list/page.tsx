@@ -1,7 +1,6 @@
 "use client"
 import Avatar from "@/app/components/Avatar";
-import { Attraction } from "@/app/context/UserContext";
-import useAuth from "@/app/hooks/useAuth";
+import { Attraction, useAuth } from "@/app/context/UserContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";

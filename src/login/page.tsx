@@ -1,6 +1,6 @@
 "use client";
-import useAuth from '../app/hooks/useAuth';
 
+import { useAuth } from "@/app/context/UserContext";
 import { useState } from "react";
 
 export default function LoginPage() {

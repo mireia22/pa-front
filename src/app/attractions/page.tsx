@@ -2,8 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import useAuth from '../hooks/useAuth';
-import { Attraction } from '../context/UserContext';
+import { Attraction, useAuth } from '../context/UserContext';
 import Link from 'next/link';
 import Avatar from '../components/Avatar';
 
